@@ -1,0 +1,42 @@
+.mcrh-todos, .mcrh-git-view, .mp-history { min-width: 0; color: var(--mcrh-fg); font-size: 12px; }
+.mcrh-todos { padding: 10px; }
+.mcrh-todos .mp-panel-head, .mcrh-git-view .mp-panel-head, .mp-history .mp-panel-head { display: flex; align-items: center; gap: 8px; min-height: 30px; margin-bottom: 8px; font-weight: 600; }
+.mcrh-todo-toolbar { display: flex; gap: 4px; margin-left: auto; }
+.mcrh-todo-count { color: var(--mcrh-fg-muted); font-size: 11px; font-weight: 400; white-space: nowrap; }
+.mcrh-todos button, .mcrh-git-view button, .mp-history button { border: 1px solid transparent; border-radius: 4px; background: transparent; color: var(--mcrh-fg); min-height: 26px; padding: 3px 7px; cursor: pointer; font: inherit; }
+.mcrh-todos button:hover, .mcrh-git-view button:hover, .mp-history button:hover { background: var(--mcrh-hover); }
+.mcrh-todos button:disabled, .mcrh-git-view button:disabled { opacity: .5; cursor: default; }
+.mcrh-todos button[data-todo-add] { color: var(--mcrh-btn-fg); background: var(--mcrh-btn-bg); }
+.mcrh-todos input[type=search], .mcrh-git-view input { width: 100%; min-width: 0; height: 30px; border: 1px solid var(--mcrh-input-border); border-radius: 4px; background: var(--mcrh-input-bg); color: var(--mcrh-input-fg); padding: 4px 8px; }
+.mcrh-todos .mcrh-todo-root { display: block; width: 100%; margin-bottom: 8px; padding-left: 0; text-align: left; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--mcrh-fg-muted); }
+.mcrh-todo-filters { display: flex; margin: 10px 0 8px; gap: 2px; border-bottom: 1px solid var(--mcrh-border); }
+.mcrh-todo-filters button { flex: 1; border-radius: 3px 3px 0 0; padding-bottom: 6px; }
+.mcrh-todo-filters button[aria-pressed=true] { color: var(--mcrh-link); border-bottom-color: var(--mcrh-accent); background: var(--mcrh-hover); }
+.mcrh-todos label[data-todo-scope] { display: flex; align-items: center; gap: 6px; color: var(--mcrh-fg-muted); }
+.mcrh-todos label[hidden] { display: none; }
+.mcrh-todos input[type=checkbox] { width: 14px; height: 14px; margin: 1px 0 0; flex: 0 0 14px; accent-color: var(--mcrh-accent); }
+.mcrh-todos .mp-panel-detail, .mcrh-git-view .mp-panel-detail, .mp-history .mp-panel-detail { color: var(--mcrh-fg-muted); font-size: 11px; line-height: 1.6; margin: 8px 0; overflow-wrap: anywhere; }
+.mcrh-todos .is-error { color: var(--mcrh-danger); }
+.mcrh-todo-group { margin-top: 16px; }
+.mcrh-todo-group h3 { margin: 0; font-size: 12px; font-weight: 600; overflow-wrap: anywhere; }
+.mcrh-todo-path { margin: 2px 0 8px; font-size: 10px; color: var(--mcrh-fg-muted); overflow-wrap: anywhere; font-family: var(--vscode-editor-font-family, monospace); }
+.mcrh-todo-item { padding: 9px 0; border-bottom: 1px solid var(--mcrh-border); }
+.mcrh-todo-item > label { display: flex; gap: 8px; align-items: flex-start; line-height: 1.5; overflow-wrap: anywhere; }
+.mcrh-todo-item.is-done > label span { text-decoration: line-through; color: var(--mcrh-fg-muted); }
+.mcrh-todo-detail { margin: 5px 0 0 22px; white-space: pre-wrap; overflow-wrap: anywhere; color: var(--mcrh-fg-muted); font-size: 11px; }
+.mcrh-todo-actions { display: flex; gap: 4px; flex-wrap: wrap; margin: 4px 0 0 15px; }
+.mcrh-todo-actions button { font-size: 11px; color: var(--mcrh-fg-muted); }
+.mcrh-todo-actions button:hover { color: var(--mcrh-fg); }
+.mcrh-todo-empty { margin: 24px 0; color: var(--mcrh-fg-muted); text-align: center; line-height: 1.7; }
+.mcrh-git-view { padding: 10px; }
+.mcrh-git-file { display: flex; flex-wrap: wrap; align-items: center; gap: 3px; padding: 6px 0; border-bottom: 1px solid var(--mcrh-border); }
+.mcrh-git-file > span { flex: 1 0 100%; overflow-wrap: anywhere; font-family: var(--vscode-editor-font-family, monospace); font-size: 11px; }
+.mcrh-git-commit { display: flex; gap: 4px; border-bottom: 1px solid var(--mcrh-border); }
+.mcrh-git-commit > button:first-child { flex: 1; text-align: left; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mcrh-git-view [data-git-commit] { display: flex; gap: 6px; margin-top: 10px; }
+.mcrh-git-view [data-git-commit][hidden] { display: none; }
+.mcrh-git-view [data-git-commit] button { white-space: nowrap; background: var(--mcrh-btn-bg); color: var(--mcrh-btn-fg); }
+.mp-history [data-paint-history] { max-height: 250px; overflow: auto; }
+.mp-history-entry { display: flex; gap: 8px; justify-content: space-between; width: 100%; text-align: left; }
+.mp-history-entry time { font-size: 10px; color: var(--mcrh-fg-muted); }
+.mp-history-entry[aria-current=true] { background: var(--mcrh-active); color: var(--mcrh-active-fg); }

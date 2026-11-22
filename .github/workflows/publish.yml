@@ -1,0 +1,88 @@
+name: Publish to VS Code Marketplace
+
+on:
+  push:
+    branches:
+      - '**'
+    paths:
+      - version
+  workflow_dispatch:
+
+concurrency:
+  group: marketplace-publish
+  queue: max
+
+permissions: {}
+
+defaults:
+  run:
+    shell: bash
+
+env:
+  NODE_VERSION: '22'
+  VSCE_VERSION: '4.1.1'
+  VSIX_ARTIFACT: mcrh-vsix
+  VSIX_FILE: mcrh.vsix
+
+jobs:
+  build:
+    name: Build and verify VSIX
+    if: github.event_name == 'workflow_dispatch' || (github.ref_name == github.event.repository.default_branch && !github.event.created && !github.event.deleted)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Check release version
+        run: node -p "require('./scripts/package-vsix.cjs').readReleaseVersion().label"
+
+      - name: Install build dependencies
+        run: npm ci --ignore-scripts --no-audit --no-fund
+
+      - name: Type check
+        run: npm run typecheck
+
+      - name: Package and verify
+        env:
+          npm_config_yes: "true"
+        run: |
+          vsix="$RUNNER_TEMP/$VSIX_FILE"
+          npm run package -- --out "$vsix"
+          npm run verify:vsix -- "$vsix"
+
+      - name: Save VSIX
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: ${{ env.VSIX_ARTIFACT }}
+          path: ${{ runner.temp }}/${{ env.VSIX_FILE }}
+          if-no-files-found: error
+          compression-level: 0
+          overwrite: true
+
+  publish:
+    name: Publish VSIX with Trusted Publishing
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          package-manager-cache: false
+
+      - name: Download verified VSIX
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          name: ${{ env.VSIX_ARTIFACT }}
+          path: ${{ runner.temp }}
+
+      - name: Publish to Marketplace
+        run: npm exec --yes --ignore-scripts --package "@vscode/vsce@$VSCE_VERSION" -- vsce publish --oidc --packagePath "$RUNNER_TEMP/$VSIX_FILE"

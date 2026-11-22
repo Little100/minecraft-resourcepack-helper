@@ -1,0 +1,145 @@
+/* 教程页沿用 base.css 的配色和组件 */
+.mcrh-wrap {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px 24px 40px;
+}
+
+.mcrh-hero {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.mcrh-hero-logo {
+  flex: 0 0 auto;
+  width: 52px;
+  height: 52px;
+  max-width: 100%;
+  border-radius: var(--mcrh-radius);
+}
+
+/* 深色主题下反色，避免黑色图标看不清 */
+.vscode-dark .mcrh-hero-logo,
+.vscode-high-contrast .mcrh-hero-logo { filter: invert(1); }
+
+.mcrh-hero-text { min-width: 0; }
+.mcrh-hero h1 { margin: 0 0 8px; font-size: 18px; font-weight: 600; }
+.mcrh-sub { max-width: 680px; margin: 0; color: var(--mcrh-fg-muted); }
+
+/* 只调整标题间距 */
+.mcrh-group > .mcrh-section-title {
+  margin: 24px 0 10px;
+  font-size: 12px;
+}
+
+.mcrh-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: 14px;
+}
+
+.mcrh-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px;
+  border: 1px solid var(--mcrh-border);
+  border-radius: var(--mcrh-radius-lg);
+  background: var(--mcrh-surface);
+}
+
+.mcrh-card[data-command] { cursor: pointer; }
+
+.mcrh-card[data-command]:hover {
+  background: var(--mcrh-hover);
+}
+
+.mcrh-card-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mcrh-card-icon {
+  flex: 0 0 auto;
+  font-size: 16px;
+  color: var(--mcrh-fg-muted);
+}
+
+.mcrh-card h3 { margin: 0; font-size: 14px; font-weight: 600; }
+.mcrh-card p { margin: 0; font-size: 12px; line-height: 1.6; color: var(--mcrh-fg-muted); }
+
+.mcrh-card-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 6px;
+  font-size: 12px;
+}
+
+.mcrh-run {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+  font-weight: 500;
+  color: var(--mcrh-link);
+}
+
+.mcrh-shortcut-groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: 4px 28px;
+  margin-top: 6px;
+}
+
+.mcrh-shortcut-group > .mcrh-section-title { margin: 10px 0 4px; }
+.mcrh-shortcut-list { margin: 0; }
+
+.mcrh-shortcut {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 5px 0;
+  border-bottom: 1px solid var(--mcrh-border);
+}
+
+.mcrh-shortcut dt { font-size: 12px; font-weight: 400; }
+.mcrh-shortcut dd { margin: 0; }
+
+.mcrh-keys {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+}
+
+.mcrh-joint { font-size: 11px; color: var(--mcrh-fg-muted); }
+
+.mcrh-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 30px;
+}
+
+.mcrh-actions .mcrh-btn { height: 28px; padding: 0 14px; }
+
+@media (max-width: 560px) {
+  .mcrh-wrap { padding: 20px 16px 32px; }
+  .mcrh-hero { flex-direction: column; gap: 12px; }
+  .mcrh-hero h1 { font-size: 18px; }
+}
+
+.mcrh-card,
+.mcrh-shortcut { min-width: 0; overflow-wrap: anywhere; }
+
+@media (prefers-color-scheme: dark) {
+  body:not(.vscode-light):not(.vscode-high-contrast-light) .mcrh-hero-logo { filter: invert(1); }
+}

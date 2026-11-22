@@ -1,0 +1,352 @@
+{
+  "package": "block-model-renderer",
+  "version": "2.20.0",
+  "source": "src/core/models.js:resolveSpecialModel + LEGACY_SPECIAL_ITEMS + assets/additional model textures",
+  "specialTypes": [
+    "banner",
+    "bed",
+    "bell",
+    "book",
+    "chest",
+    "conduit",
+    "copper_golem_statue",
+    "creeper_head",
+    "decorated_pot",
+    "dragon_head",
+    "end_cube",
+    "head",
+    "piglin_head",
+    "player_head",
+    "shield",
+    "shulker_box",
+    "skeleton_skull",
+    "trident",
+    "trident_in_hand",
+    "trident_throwing",
+    "wither_skeleton_skull",
+    "zombie_head"
+  ],
+  "legacySpecialItems": {
+    "chest": {
+      "type": "chest",
+      "texture": "normal"
+    },
+    "trapped_chest": {
+      "type": "chest",
+      "texture": "trapped"
+    },
+    "ender_chest": {
+      "type": "chest",
+      "texture": "ender"
+    },
+    "banner": {
+      "type": "banner",
+      "color": "white"
+    },
+    "bed": {
+      "type": "bed",
+      "texture": "red"
+    },
+    "skull": {
+      "type": "head",
+      "kind": "skeleton"
+    },
+    "skeleton_skull": {
+      "type": "head",
+      "kind": "skeleton"
+    },
+    "wither_skeleton_skull": {
+      "type": "head",
+      "kind": "wither_skeleton"
+    },
+    "zombie_head": {
+      "type": "head",
+      "kind": "zombie"
+    },
+    "creeper_head": {
+      "type": "head",
+      "kind": "creeper"
+    },
+    "dragon_head": {
+      "type": "head",
+      "kind": "dragon"
+    },
+    "piglin_head": {
+      "type": "head",
+      "kind": "piglin"
+    },
+    "player_head": {
+      "type": "head",
+      "kind": "player"
+    },
+    "shield": {
+      "type": "shield"
+    },
+    "conduit": {
+      "type": "conduit"
+    },
+    "decorated_pot": {
+      "type": "decorated_pot"
+    },
+    "shulker_box": {
+      "type": "shulker_box",
+      "texture": "shulker"
+    },
+    "silver_shulker_box": {
+      "type": "shulker_box",
+      "texture": "shulker_silver"
+    },
+    "white_banner": {
+      "type": "banner",
+      "color": "white"
+    },
+    "white_bed": {
+      "type": "bed",
+      "texture": "white"
+    },
+    "white_shulker_box": {
+      "type": "shulker_box",
+      "texture": "shulker_white"
+    },
+    "orange_banner": {
+      "type": "banner",
+      "color": "orange"
+    },
+    "orange_bed": {
+      "type": "bed",
+      "texture": "orange"
+    },
+    "orange_shulker_box": {
+      "type": "shulker_box",
+      "texture": "shulker_orange"
+    },
+    "magenta_banner": {
+      "type": "banner",
+      "color": "magenta"
+    },
+    "magenta_bed": {
+      "type": "bed",
+      "texture": "magenta"
+    },
+    "magenta_shulker_box": {
+      "type": "shulker_box",
+      "texture": "shulker_magenta"
+    },
+    "light_blue_banner": {
+      "type": "banner",
+      "color": "light_blue"
+    },
+    "light_blue_bed": {
+      "type": "bed",
+      "texture": "light_blue"
+    },
+    "light_blue_shulker_box": {
+      "type": "shulker_box",
+      "texture": "shulker_light_blue"
+    },
+    "yellow_banner": {
+      "type": "banner",
+      "color": "yellow"
+    },
+    "yellow_bed": {
+      "type": "bed",
+      "texture": "yellow"
+    },
+    "yellow_shulker_box": {
+      "type": "shulker_box",
+      "texture": "shulker_yellow"
+    },
+    "lime_banner": {
+      "type": "banner",
+      "color": "lime"
+    },
+    "lime_bed": {
+      "type": "bed",
+      "texture": "lime"
+    },
+    "lime_shulker_box": {
+      "type": "shulker_box",
+      "texture": "shulker_lime"
+    },
+    "pink_banner": {
+      "type": "banner",
+      "color": "pink"
+    },
+    "pink_bed": {
+      "type": "bed",
+      "texture": "pink"
+    },
+    "pink_shulker_box": {
+      "type": "shulker_box",
+      "texture": "shulker_pink"
+    },
+    "gray_banner": {
+      "type": "banner",
+      "color": "gray"
+    },
+    "gray_bed": {
+      "type": "bed",
+      "texture": "gray"
+    },
+    "gray_shulker_box": {
+      "type": "shulker_box",
+      "texture": "shulker_gray"
+    },
+    "light_gray_banner": {
+      "type": "banner",
+      "color": "light_gray"
+    },
+    "light_gray_bed": {
+      "type": "bed",
+      "texture": "light_gray"
+    },
+    "light_gray_shulker_box": {
+      "type": "shulker_box",
+      "texture": "shulker_light_gray"
+    },
+    "cyan_banner": {
+      "type": "banner",
+      "color": "cyan"
+    },
+    "cyan_bed": {
+      "type": "bed",
+      "texture": "cyan"
+    },
+    "cyan_shulker_box": {
+      "type": "shulker_box",
+      "texture": "shulker_cyan"
+    },
+    "purple_banner": {
+      "type": "banner",
+      "color": "purple"
+    },
+    "purple_bed": {
+      "type": "bed",
+      "texture": "purple"
+    },
+    "purple_shulker_box": {
+      "type": "shulker_box",
+      "texture": "shulker_purple"
+    },
+    "blue_banner": {
+      "type": "banner",
+      "color": "blue"
+    },
+    "blue_bed": {
+      "type": "bed",
+      "texture": "blue"
+    },
+    "blue_shulker_box": {
+      "type": "shulker_box",
+      "texture": "shulker_blue"
+    },
+    "brown_banner": {
+      "type": "banner",
+      "color": "brown"
+    },
+    "brown_bed": {
+      "type": "bed",
+      "texture": "brown"
+    },
+    "brown_shulker_box": {
+      "type": "shulker_box",
+      "texture": "shulker_brown"
+    },
+    "green_banner": {
+      "type": "banner",
+      "color": "green"
+    },
+    "green_bed": {
+      "type": "bed",
+      "texture": "green"
+    },
+    "green_shulker_box": {
+      "type": "shulker_box",
+      "texture": "shulker_green"
+    },
+    "red_banner": {
+      "type": "banner",
+      "color": "red"
+    },
+    "red_bed": {
+      "type": "bed",
+      "texture": "red"
+    },
+    "red_shulker_box": {
+      "type": "shulker_box",
+      "texture": "shulker_red"
+    },
+    "black_banner": {
+      "type": "banner",
+      "color": "black"
+    },
+    "black_bed": {
+      "type": "bed",
+      "texture": "black"
+    },
+    "black_shulker_box": {
+      "type": "shulker_box",
+      "texture": "shulker_black"
+    }
+  },
+  "specialTextures": {
+    "banner": [
+      "entity/banner/banner_base",
+      "entity/banner/base"
+    ],
+    "bed": [],
+    "bell": [
+      "entity/bell/bell_body"
+    ],
+    "book": [
+      "entity/enchantment/enchanting_table_book"
+    ],
+    "chest": [],
+    "conduit": [
+      "entity/conduit/base"
+    ],
+    "copper_golem_statue": [],
+    "creeper_head": [
+      "entity/creeper/creeper"
+    ],
+    "decorated_pot": [
+      "entity/decorated_pot/decorated_pot_base",
+      "entity/decorated_pot/decorated_pot_side"
+    ],
+    "dragon_head": [
+      "entity/enderdragon/dragon"
+    ],
+    "end_cube": [
+      "entity/end_portal/end_portal"
+    ],
+    "head": [],
+    "piglin_head": [
+      "entity/piglin/piglin"
+    ],
+    "player_head": [
+      "entity/player/wide/steve"
+    ],
+    "shield": [
+      "entity/shield/shield_base_nopattern"
+    ],
+    "shulker_box": [],
+    "skeleton_skull": [
+      "entity/skeleton/skeleton"
+    ],
+    "trident": [
+      "entity/trident/trident"
+    ],
+    "trident_in_hand": [
+      "entity/trident/trident"
+    ],
+    "trident_throwing": [
+      "entity/trident/trident"
+    ],
+    "wither_skeleton_skull": [
+      "entity/skeleton/wither_skeleton"
+    ],
+    "zombie_head": [
+      "entity/zombie/zombie"
+    ]
+  }
+}

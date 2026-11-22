@@ -1,0 +1,34 @@
+{
+  "upstream": "21b99a7cea5d87c2796ca91851b74e6ae0850020",
+  "protocol": 1,
+  "source": "https://github.com/openp2p-cn/openp2p",
+  "modifications": [
+    "receiver TCP loopback destination port guard",
+    "deny all client ingress",
+    "cwd config isolation",
+    "disable automatic firewall/service installation and SDWAN",
+    "UUID transport port suffix with atomic TCP/UDP reservation"
+  ],
+  "files": [
+    {
+      "name": "openp2p-mcrh-windows-amd64.exe",
+      "sha256": "110de8061b868b45ab46bf94d0e94a3d545eb5ecc1261c60ffa0bc4eac6fc92a",
+      "bytes": 8504832
+    },
+    {
+      "name": "openp2p-mcrh-linux-amd64",
+      "sha256": "91a49e10b8a8bafcf38c954935bbd779267606beab26c973270b2209ea426fd0",
+      "bytes": 9953280
+    },
+    {
+      "name": "openp2p-mcrh-windows-arm64.exe",
+      "sha256": "a33cb07db1d0a74c61761293dffc2bd251a1e32632159b898de139b95c93a210",
+      "bytes": 7907328
+    },
+    {
+      "name": "openp2p-mcrh-linux-arm64",
+      "sha256": "923b9cafeefb72fec12e5472eaf84dd94551013480b4e9b83f587d06c40e868b",
+      "bytes": 9437184
+    }
+  ]
+}

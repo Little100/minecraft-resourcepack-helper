@@ -1,0 +1,59 @@
+html, body { height: 100%; }
+body { padding: 0; margin: 0; overflow: hidden; }
+.gui-preview-page { display: flex; flex-direction: column; height: 100vh; min-width: 360px; color: var(--mcrh-fg); font: 12px var(--mcrh-font); }
+.gui-preview-page button, .gui-preview-page select { font: inherit; }
+.gui-preview-page button { min-height: 28px; padding: 4px 10px; border: 1px solid var(--mcrh-border); border-radius: 4px; color: var(--mcrh-fg); background: var(--vscode-button-secondaryBackground, #33373d); cursor: pointer; white-space: nowrap; }
+.gui-preview-page button:hover { background: var(--vscode-list-hoverBackground, #3c3e43); }
+.gui-preview-page button:focus-visible, .gui-preview-page select:focus-visible, .gui-stage:focus-visible { outline: 1px solid var(--vscode-focusBorder, #007acc); outline-offset: -1px; }
+.gui-preview-page button:disabled { opacity: .5; cursor: default; }
+.gui-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 20px 12px; border-bottom: 1px solid var(--mcrh-border); }
+.gui-heading { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.gui-heading > .codicon { font-size: 22px; color: var(--mcrh-disabled); }
+.gui-header h1 { margin: 0; font-size: 16px; font-weight: 600; }
+.gui-pack { margin: 4px 0 0; font-size: 11px; color: var(--mcrh-disabled); overflow-wrap: anywhere; }
+.gui-header-actions { display: flex; flex-wrap: wrap; gap: 6px; justify-content: end; }
+.gui-scenes { display: flex; flex-shrink: 0; gap: 2px; padding: 0 12px; overflow-x: auto; border-bottom: 1px solid var(--mcrh-border); background: var(--vscode-editorGroupHeader-tabsBackground, #252526); }
+.gui-scenes button { background: transparent; border: none; border-bottom: 2px solid transparent; border-radius: 0; padding: 11px 12px 9px; color: var(--mcrh-disabled); }
+.gui-scenes button.is-active { border-bottom-color: var(--vscode-focusBorder, #007acc); color: var(--mcrh-fg); background: var(--vscode-tab-activeBackground, #1e1e1e); }
+.gui-toolbar { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; padding: 9px 20px; border-bottom: 1px solid var(--mcrh-border); }
+.gui-toolbar label { display: flex; align-items: center; gap: 8px; color: var(--mcrh-disabled); font-size: 11px; }
+.gui-toolbar select { min-height: 26px; padding: 2px 5px; border: 1px solid var(--mcrh-input-border); border-radius: 4px; background: var(--mcrh-input-bg); color: var(--mcrh-input-fg); }
+.gui-scale-info { margin-left: auto; color: var(--mcrh-disabled); font: 11px var(--mcrh-mono); }
+.gui-workspace { display: grid; grid-template-columns: minmax(200px, 1fr) 300px; min-height: 0; flex: 1; }
+.gui-preview-area { min-width: 0; min-height: 0; display: flex; flex-direction: column; }
+.gui-stage { flex: 1; min-height: 200px; overflow: auto; padding: 20px; box-sizing: border-box; background: var(--vscode-editor-background, #1e1e1e); }
+.gui-stage canvas { display: block; margin: auto; image-rendering: pixelated; outline: 1px solid var(--mcrh-border); box-shadow: 0 4px 16px #0002; }
+.gui-stage canvas[data-background="checker"], .gui-texture img { background-color: #262a30; background-image: conic-gradient(#343941 25%, transparent 0 50%, #343941 0 75%, transparent 0); background-size: 16px 16px; }
+.gui-stage.is-panning, .gui-stage.is-panning canvas { cursor: grabbing !important; user-select: none; }
+.gui-stage-caption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px; padding: 9px 16px; border-top: 1px solid var(--mcrh-border); color: var(--mcrh-disabled); font-size: 10px; line-height: 1.5; }
+.gui-inspector { min-height: 0; overflow: auto; border-left: 1px solid var(--mcrh-border); background: var(--vscode-sideBar-background, #252526); }
+.gui-section { padding: 14px 16px; border-bottom: 1px solid var(--mcrh-border); }
+.gui-section h2 { margin: 0 0 12px; font-size: 11px; font-weight: 600; letter-spacing: .2px; }
+.gui-texture-count { margin-left: 4px; color: var(--mcrh-disabled); font-weight: 400; font-family: var(--mcrh-mono); }
+.gui-small, .gui-boundary p { margin: 6px 0 10px; color: var(--mcrh-disabled); font-size: 11px; line-height: 1.7; }
+.gui-slider { display: block; margin: 12px 0 4px; }
+.gui-slider > span { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
+.gui-slider output { font: 11px var(--mcrh-mono); color: var(--mcrh-disabled); }
+.gui-slider input { display: block; appearance: none; width: 100%; height: 18px; margin: 0; background: transparent; cursor: pointer; }
+.gui-slider input::-webkit-slider-runnable-track { height: 3px; background: var(--vscode-scrollbarSlider-background, #555b65); border-radius: 2px; }
+.gui-slider input::-webkit-slider-thumb { appearance: none; width: 10px; height: 10px; margin-top: -3.5px; border-radius: 50%; background: var(--vscode-focusBorder, #007acc); border: 1px solid var(--vscode-focusBorder, #007acc); }
+.gui-slider input:focus-visible { outline: 1px solid var(--vscode-focusBorder, #007acc); outline-offset: 2px; }
+.gui-effect-toggle { display: grid; grid-template-columns: 14px 1fr; align-items: center; gap: 5px 8px; margin: 10px 0 14px; cursor: pointer; }
+.gui-effect-toggle input { margin: 0; width: 14px; height: 14px; accent-color: var(--vscode-focusBorder, #007acc); }
+.gui-effect-toggle small { grid-column: 2; color: var(--mcrh-disabled); font-size: 10px; line-height: 1.5; }
+.gui-textures { display: flex; flex-direction: column; gap: 4px; }
+.gui-texture { display: flex; align-items: center; gap: 4px; border: 1px solid transparent; border-radius: 4px; }
+.gui-texture.is-selected { border-color: var(--vscode-focusBorder, #007acc); background: var(--vscode-list-inactiveSelectionBackground, #37373d); }
+.gui-texture button.gui-texture-select { display: flex; align-items: center; gap: 8px; text-align: left; white-space: normal; min-width: 0; padding: 5px 4px; background: transparent; border: 0; flex: 1; }
+.gui-texture-select > span { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.gui-texture-select > span > span { overflow-wrap: anywhere; font: 11px var(--mcrh-mono); }
+.gui-texture small { color: var(--mcrh-disabled); font-size: 10px; line-height: 1.4; }
+.gui-texture img { width: 30px; height: 30px; object-fit: contain; flex-shrink: 0; image-rendering: pixelated; border-radius: 2px; }
+.gui-texture button.gui-texture-open { padding: 2px 6px; min-height: 24px; font-size: 10px; background: transparent; }
+.gui-issues { padding-left: 16px; margin: 0; color: var(--mcrh-warn); font-size: 11px; line-height: 1.7; overflow-wrap: anywhere; }
+.gui-issues li + li { margin-top: 7px; }
+.gui-status { flex-shrink: 0; margin: 0; padding: 7px 16px; font-size: 11px; border-top: 1px solid var(--mcrh-border); color: var(--mcrh-disabled); }
+.gui-status.is-error { color: var(--mcrh-danger); }
+.gui-section[hidden] { display: none; }
+@media (max-width: 760px) { .gui-workspace { grid-template-columns: minmax(150px, 1fr) 230px; } .gui-header { padding: 12px; align-items: flex-start; } .gui-header-actions { max-width: 150px; } .gui-toolbar { padding: 8px 12px; } .gui-scale-info { display: none; } .gui-section { padding: 12px; } }
+@media (max-width: 520px) { .gui-workspace { display: flex; flex-direction: column; overflow-y: auto; } .gui-preview-area { flex-shrink: 0; min-height: 300px; } .gui-inspector { overflow: visible; border-left: none; border-top: 1px solid var(--mcrh-border); flex-shrink: 0; } .gui-header-actions button { font-size: 10px; min-height: 24px; } .gui-heading > .codicon { display: none; } .gui-header h1 { font-size: 14px; } }

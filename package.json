@@ -1,0 +1,804 @@
+{
+  "name": "mcrh",
+  "displayName": "MCRH: Minecraft Resourcepack Helper",
+  "description": "%manifest.description%",
+  "version": "1.0.0-beta1",
+  "publisher": "100-mcrh",
+  "license": "SEE LICENSE IN LICENSE",
+  "icon": "images/icon.png",
+  "main": "./out/extension.js",
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "node build.js && tsc -p tsconfig.json --noEmit",
+    "watch": "node build.js --watch",
+    "package": "node scripts/package-vsix.cjs",
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.webview.json --noEmit && tsc -p tsconfig.browser.json --noEmit",
+    "test": "node build.js && node build.test.cjs && node run-tests.cjs",
+    "test:i18n": "node tools/build-web.cjs && node tools/interface-language-test.cjs",
+    "test:build": "node build.js && node build.test.cjs",
+    "icon": "node tools/product-icon.cjs",
+    "icon:pack": "node tools/make-icon.cjs",
+    "test:advanced": "node tools/test-advanced.cjs",
+    "test:ui": "node build.js && node tools/workbench-browser-test.cjs",
+    "test:host:advanced": "node build.js && node build.test.cjs && node run-tests.cjs --advanced-host",
+    "test:paint:ui": "node build.js && node tools/paint-selection-test.cjs && node tools/paint-browser-test.cjs && node tools/paint-pixel-browser-test.cjs",
+    "test:preview:ui": "node build.js && node tools/vanilla-preview-browser-test.cjs",
+    "test:preview:client": "node tools/client-preview-host-test.cjs && node tools/client-preview-browser-test.cjs --client tmp/client-preview-26.3/client.jar",
+    "test:preview:follow": "node build.js && node tools/preview-follow-test.cjs",
+    "test:studio:ui": "node build.js && node tools/scene-workbench-browser-test.cjs && node tools/studio-assets-browser-test.cjs && node tools/studio-browser-test.cjs",
+    "test:release": "npm run typecheck && npm test && npm run test:advanced && npm run test:host:advanced && npm run test:ui && npm run test:theme:ui && npm run test:watermark:ui && npm run test:studio:ui && npm run test:paint:ui && npm run test:preview:ui && npm run test:preview:audit && npm run test:preview:follow && npm run test:web:ui && npm run test:pack:ui && npm run test:batch:ui && npm run test:mod:ui && npm run test:reference:ui && npm run test:preview:models && node tools/diagnosis-entry-host-test.cjs && node tools/diagnosis-page-browser-test.cjs && node tools/select-browser-test.cjs && npm run test:collaboration && npm run test:collaboration:ui && npm run test:collaboration:host && npm run test:collaboration:edge && npm run test:collaboration:multipack && npm run test:collaboration:cli && npm run test:paint:enhancements && npm run test:pack:completion && npm run test:paint:regressions && npm run test:preview:scenes && npm run test:random && npm run test:webview:diagnostics && npm run test:export:editor-data && npm run test:package && npm run test:client:cache && npm run test:client:resolution && npm run test:collaboration:p2p && npm run test:paint:guides && npm run test:paint:guides:ui && npm run test:mcp && npm run test:i18n",
+    "test:theme:ui": "node build.js && node tools/theme-browser-test.cjs",
+    "build:web": "node tools/build-web.cjs",
+    "dev:web": "node tools/build-web.cjs && node tools/serve-web.cjs",
+    "test:pack:ui": "node build.js && node tools/build-web.cjs && node tools/pack-tools-host-test.cjs && node tools/pack-tools-browser-test.cjs",
+    "test:web:ui": "node tools/build-web.cjs && node tools/web-browser-test.cjs",
+    "test:watermark:ui": "node build.js && node tools/watermark-browser-test.cjs",
+    "package:web": "node tools/build-web.cjs && node tools/package-web.cjs",
+    "verify:vsix": "node scripts/verify-vsix.cjs",
+    "verify:release": "node tools/verify-release-artifacts.cjs",
+    "test:preview:audit": "node tools/preview-audit-browser-test.cjs",
+    "test:preview:storage": "node tools/preview-client-storage-test.cjs",
+    "test:preview:names": "node tools/preview-language-cache-test.cjs && node tools/preview-resource-context-test.cjs",
+    "test:preview:worker": "node tools/client-assets-worker-test.cjs",
+    "test:preview:documents": "node tools/preview-model-documents-test.cjs",
+    "test:select:dom": "node tools/select-controls-dom-test.cjs",
+    "test:tint:client": "node build.js && node tools/build-web.cjs && node tools/tint-preview-browser-test.cjs",
+    "test:batch:ui": "node build.js && node tools/build-web.cjs && node tools/pack-tools-host-test.cjs && node tools/texture-batch-browser-test.cjs",
+    "test:mod:ui": "node build.js && node tools/build-web.cjs && node tools/mod-textures-host-test.cjs && node tools/mod-textures-browser-test.cjs && node tools/mod-textures-commit-test.cjs",
+    "test:reference:ui": "node tools/reference-images-test.cjs",
+    "test:diagnosis:ui": "node build.js && node tools/build-web.cjs && node tools/diagnosis-entry-host-test.cjs && node tools/diagnosis-page-browser-test.cjs && node tools/pack-tools-host-test.cjs && node tools/pack-tools-browser-test.cjs",
+    "test:preview:models": "node tools/model-inspector-browser-test.cjs && npm run test:preview:uv && npm run test:preview:generated",
+    "test:select:ui": "node build.js && node tools/build-web.cjs && node tools/select-browser-test.cjs",
+    "test:collaboration": "node tools/collaboration-test.cjs",
+    "test:collaboration:ui": "node build.js && node tools/collaboration-browser-test.cjs",
+    "package:server": "node build.js && node tools/package-server.cjs",
+    "test:collaboration:host": "node tools/collaboration-host-test.cjs",
+    "test:collaboration:edge": "node tools/collaboration-edge-test.cjs",
+    "test:collaboration:cli": "node build.js && node tools/collaboration-cli-test.cjs",
+    "verify:server": "node tools/collaboration-server-package-test.cjs",
+    "test:paint:enhancements": "tsc -p tsconfig.test.json --outDir tmp/test-build && mocha tmp/test-build/test/suite/pixelEditing.test.js tmp/test-build/test/suite/textureBatch.test.js tmp/test-build/test/suite/edgeTransitions.test.js --timeout 15000 && node tools/pixel-editor-host-test.cjs && node tools/paint-enhancements-browser-test.cjs && node tools/texture-transition-dom-test.cjs",
+    "test:pack:completion": "tsc -p tsconfig.test.json --outDir tmp/test-build && mocha tmp/test-build/test/suite/clientPackMetadata.test.js tmp/test-build/test/suite/resourceNames.test.js --timeout 15000 && node tools/client-pack-completion-test.cjs",
+    "test:paint:regressions": "node tools/paint-regressions-test.cjs && node tools/paint-drop-regressions-test.cjs",
+    "test:preview:scenes": "node tools/presentation-scene-test.cjs",
+    "test:paint:opacity": "node tools/paint-opacity-test.cjs",
+    "package:source": "node scripts/package-source.cjs",
+    "test:preview:orbit": "node tools/camera-orbit-test.cjs",
+    "test:random": "node tools/random-variants-test.cjs && node tools/random-variants-host-test.cjs && node tools/random-variants-browser-test.cjs",
+    "test:webview:diagnostics": "node tools/webview-diagnostics-test.cjs",
+    "test:export:editor-data": "node tools/editor-data-export-test.cjs --related",
+    "test:package": "node tools/vsix-package-policy-test.cjs",
+    "test:client:resolution": "node tools/client-texture-resolution-test.cjs",
+    "package:server:native": "node tools/build-server-executables.cjs",
+    "build:openp2p": "node tools/build-openp2p.cjs",
+    "test:collaboration:p2p": "node tools/p2p-network-test.cjs && node tools/p2p-auto-host-test.cjs && node tools/p2p-lifecycle-test.cjs && node tools/collaboration-p2p-test.cjs && node tools/p2p-diagnostics-test.cjs",
+    "test:client:cache": "node tools/client-jar-cache-test.cjs",
+    "test:editor:refinements": "node tools/editor-refinements-test.cjs",
+    "test:mcp": "node tools/mcp-startup-test.cjs && node tools/mcp-painting-test.cjs && node tools/mcp-test.cjs",
+    "test:mcp:vscode": "node tools/mcp-vscode-test.cjs",
+    "test:paint:nearby": "node tools/paint-nearby-test.cjs",
+    "test:collaboration:root": "node tools/collaboration-host-root-test.cjs",
+    "test:collaboration:bundle": "node tools/openp2p-bundle-test.cjs",
+    "test:paint:guides": "node tools/smart-guides-test.cjs",
+    "test:paint:nearby:ui": "node tools/paint-nearby-browser-test.cjs",
+    "test:paint:guides:ui": "node tools/smart-guides-browser-test.cjs",
+    "test:webview:repair": "node tools/webview-auto-repair-test.cjs && node tools/webview-recovery-host-test.cjs && node tools/webview-recovery-test.cjs",
+    "test:blockbench": "node tools/blockbench-open-test.cjs && node tools/blockbench-preview-browser-test.cjs",
+    "test:preview:uv": "node tools/preview-default-uv-test.cjs",
+    "test:preview:generated": "node tools/generated-base-test.cjs && node tools/generated-reference-test.cjs && node tools/generated-base-browser-test.cjs && node tools/generated-reference-browser-test.cjs && node tools/alpha-model-optimizer-test.cjs",
+    "test:collaboration:startup": "node tools/p2p-port-test.cjs && node tools/collaboration-tls-test.cjs && node tools/collaboration-startup-flow-test.cjs",
+    "test:collaboration:startup:vscode": "node tools/collaboration-startup-vscode-host.cjs",
+    "test:collaboration:tls": "node tools/collaboration-tls-test.cjs",
+    "test:gui": "tsc -p tsconfig.test.json --outDir tmp/test-build && mocha tmp/test-build/test/suite/guiPreview.test.js --timeout 15000 && node tools/gui-preview-host-test.cjs && node tools/gui-preview-browser-test.cjs && node tools/gui-preview-routing-test.cjs",
+    "test:resource-authoring": "node tools/resource-authoring-test.cjs && node tools/resource-templates-host-test.cjs && node tools/resource-authoring-browser-test.cjs",
+    "test:preview:restore": "node tools/preview-restoration-vscode-test.cjs",
+    "test:vanilla:authoring": "node tools/vanilla-authoring-test.cjs && node tools/vanilla-authoring-host-test.cjs",
+    "test:vanilla:authoring:ui": "node tools/vanilla-authoring-browser-test.cjs",
+    "test:collaboration:multipack": "node tools/collaboration-multipack-test.cjs",
+    "test:collaboration:live:p2p": "node tools/collaboration-live-p2p-test.cjs"
+  },
+  "keywords": [
+    "minecraft",
+    "resourcepack",
+    "材质包",
+    "mcmeta",
+    "optifine",
+    "pixel art"
+  ],
+  "author": "Little100",
+  "type": "commonjs",
+  "devDependencies": {
+    "@modelcontextprotocol/client": "2.3.1",
+    "@playwright/test": "^1.64.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^22.10.0",
+    "@types/pako": "2.0.4",
+    "@types/pngjs": "^6.0.5",
+    "@types/proper-lockfile": "^4.1.4",
+    "@types/three": "0.186.0",
+    "@types/vscode": "^1.96.0",
+    "@vscode/codicons": "0.0.46-24",
+    "@vscode/test-electron": "^3.1.0",
+    "esbuild": "^0.24.0",
+    "jsdom": "^29.1.1",
+    "mocha": "^12.0.3",
+    "typescript": "^5.6.0"
+  },
+  "dependencies": {
+    "@fastify/rate-limit": "^10.3.0",
+    "@modelcontextprotocol/node": "2.1.1",
+    "@modelcontextprotocol/server": "2.3.1",
+    "block-model-renderer": "2.20.0",
+    "blockly": "^13.3.0",
+    "buffer": "5.7.1",
+    "commander": "^14.0.3",
+    "diff": "^8.0.4",
+    "fastify": "^5.12.7",
+    "fflate": "^0.8.3",
+    "gifuct-js": "^2.1.2",
+    "image-size": "2.0.4",
+    "isomorphic-git": "^1.44.2",
+    "jsonc-parser": "^3.3.1",
+    "pako": "2.1.0",
+    "pngjs": "^7.0.0",
+    "proper-lockfile": "^4.1.2",
+    "selfsigned": "^5.5.0",
+    "smol-toml": "^1.9.1",
+    "three": "0.186.1",
+    "tinykeys": "^4.0.1",
+    "upng-js": "^2.1.0",
+    "utif": "3.1.0",
+    "zod": "^4.6.7"
+  },
+  "engines": {
+    "vscode": "^1.96.0"
+  },
+  "categories": [
+    "Other",
+    "Snippets",
+    "Visualization"
+  ],
+  "activationEvents": [
+    "workspaceContains:**/pack.mcmeta",
+    "workspaceContains:**/assets/*/textures",
+    "onCommand:mcrh.showTutorial",
+    "onCommand:mcrh.refreshPack",
+    "onCommand:mcrh.scanPacks",
+    "onCommand:mcrh.createExample",
+    "onCommand:mcrh.createStructure",
+    "onCommand:mcrh.scaffoldPack",
+    "onCommand:mcrh.extractClientAssets",
+    "onCommand:mcrh.previewTexture",
+    "onCommand:mcrh.refreshPackFormats",
+    "onCommand:mcrh.convertAnimation",
+    "onCommand:mcrh.writeOptiFineTutorial",
+    "onCommand:mcrh.openSyntaxPreview",
+    "onCommand:mcrh.checkFfmpeg",
+    "onCommand:mcrh.pickFfmpegPath",
+    "onCommand:mcrh.openInBlockbench",
+    "onCommand:mcrh.pickBlockbenchPath",
+    "onCommand:mcrh.openAdvancedWorkbench",
+    "onView:mcrh.sidebar",
+    "onStartupFinished",
+    "onCommand:mcrh.addScanFolder",
+    "onCommand:mcrh.configureScan",
+    "workspaceContains:**/assets/*/textures/**",
+    "workspaceContains:**/assets/*/font/*.json",
+    "onCommand:mcrh.previewVanillaModel",
+    "onLanguage:json",
+    "onLanguage:jsonc",
+    "onCommand:mcrh.exportPackZip",
+    "onCommand:mcrh.diagnosePack",
+    "onCommand:mcrh.convertPackVersion",
+    "onCommand:mcrh.openCollaboration",
+    "onCommand:mcrh.openGit",
+    "onView:mcrh.todos",
+    "onCommand:mcrh.showLogs",
+    "onCommand:mcrh.showWebviewDiagnostics",
+    "onCommand:mcrh.exportWebviewDiagnostics",
+    "onCommand:mcrh.webviewReloadAdvice",
+    "onCommand:mcrh.recoverWebviews",
+    "onCommand:mcrh.previewGui",
+    "onWebviewPanel:mcrh.preview",
+    "onWebviewPanel:mcrh.syntaxPreview",
+    "onWebviewPanel:mcrh.vanillaPreview",
+    "onWebviewPanel:mcrh.guiPreview",
+    "onCommand:mcrh.createCustomModelData",
+    "onCommand:mcrh.createFontTemplate",
+    "onCommand:mcrh.insertFontGlyph",
+    "onCommand:mcrh.createVanillaTemplate",
+    "onCommand:mcrh.applyJsonFamily"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "mcrh.showTutorial",
+        "title": "%command.showTutorial%",
+        "icon": "$(book)"
+      },
+      {
+        "command": "mcrh.refreshPack",
+        "title": "%command.refreshPack%"
+      },
+      {
+        "command": "mcrh.scanPacks",
+        "title": "%command.scanPacks%",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "mcrh.createExample",
+        "title": "%command.createExample%",
+        "icon": "$(file-add)"
+      },
+      {
+        "command": "mcrh.createStructure",
+        "title": "%command.createStructure%",
+        "icon": "$(new-folder)"
+      },
+      {
+        "command": "mcrh.scaffoldPack",
+        "title": "%command.scaffoldPack%",
+        "icon": "$(tools)"
+      },
+      {
+        "command": "mcrh.extractClientAssets",
+        "title": "%command.extractClientAssets%",
+        "icon": "$(cloud-download)"
+      },
+      {
+        "command": "mcrh.previewTexture",
+        "title": "%command.previewTexture%",
+        "icon": "$(preview)"
+      },
+      {
+        "command": "mcrh.refreshPackFormats",
+        "title": "%command.refreshPackFormats%"
+      },
+      {
+        "command": "mcrh.convertAnimation",
+        "title": "%command.convertAnimation%",
+        "icon": "$(file-media)"
+      },
+      {
+        "command": "mcrh.writeOptiFineTutorial",
+        "title": "%command.writeOptiFineTutorial%"
+      },
+      {
+        "command": "mcrh.openSyntaxPreview",
+        "title": "%command.openSyntaxPreview%",
+        "icon": "$(open-preview)"
+      },
+      {
+        "command": "mcrh.checkFfmpeg",
+        "title": "%command.checkFfmpeg%"
+      },
+      {
+        "command": "mcrh.pickFfmpegPath",
+        "title": "%command.pickFfmpegPath%",
+        "icon": "$(folder-opened)"
+      },
+      {
+        "command": "mcrh.openInBlockbench",
+        "title": "%command.openInBlockbench%",
+        "icon": "$(link-external)"
+      },
+      {
+        "command": "mcrh.pickBlockbenchPath",
+        "title": "%command.pickBlockbenchPath%",
+        "icon": "$(folder-opened)"
+      },
+      {
+        "command": "mcrh.openAdvancedWorkbench",
+        "title": "%command.openAdvancedWorkbench%",
+        "icon": "$(beaker)"
+      },
+      {
+        "command": "mcrh.addScanFolder",
+        "title": "%command.addScanFolder%",
+        "icon": "$(folder-opened)"
+      },
+      {
+        "command": "mcrh.configureScan",
+        "title": "%command.configureScan%",
+        "icon": "$(settings-gear)"
+      },
+      {
+        "command": "mcrh.previewVanillaModel",
+        "title": "%command.previewVanillaModel%",
+        "icon": "$(open-preview)"
+      },
+      {
+        "command": "mcrh.exportPackZip",
+        "title": "%command.exportPackZip%",
+        "icon": "$(export)"
+      },
+      {
+        "command": "mcrh.diagnosePack",
+        "title": "%command.diagnosePack%",
+        "icon": "$(pulse)"
+      },
+      {
+        "command": "mcrh.convertPackVersion",
+        "title": "%command.convertPackVersion%",
+        "icon": "$(versions)"
+      },
+      {
+        "command": "mcrh.openCollaboration",
+        "title": "%command.openCollaboration%",
+        "icon": "$(source-control)"
+      },
+      {
+        "command": "mcrh.openGit",
+        "title": "%command.openGit%"
+      },
+      {
+        "command": "mcrh.showLogs",
+        "title": "%command.showLogs%"
+      },
+      {
+        "command": "mcrh.showWebviewDiagnostics",
+        "title": "%command.showWebviewDiagnostics%"
+      },
+      {
+        "command": "mcrh.exportWebviewDiagnostics",
+        "title": "%command.exportWebviewDiagnostics%"
+      },
+      {
+        "command": "mcrh.webviewReloadAdvice",
+        "title": "%command.webviewReloadAdvice%"
+      },
+      {
+        "command": "mcrh.configureMcp",
+        "title": "%command.configureMcp%"
+      },
+      {
+        "command": "mcrh.copyMcpSetup",
+        "title": "%command.copyMcpSetup%"
+      },
+      {
+        "command": "mcrh.recoverWebviews",
+        "title": "%command.recoverWebviews%",
+        "icon": "$(debug-restart)"
+      },
+      {
+        "command": "mcrh.previewGui",
+        "title": "%command.previewGui%",
+        "icon": "$(layout)"
+      },
+      {
+        "command": "mcrh.createCustomModelData",
+        "title": "%command.createCustomModelData%"
+      },
+      {
+        "command": "mcrh.createFontTemplate",
+        "title": "%command.createFontTemplate%"
+      },
+      {
+        "command": "mcrh.insertFontGlyph",
+        "title": "%command.insertFontGlyph%"
+      },
+      {
+        "command": "mcrh.createVanillaTemplate",
+        "title": "%command.createVanillaTemplate%"
+      },
+      {
+        "command": "mcrh.applyJsonFamily",
+        "title": "%command.applyJsonFamily%"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "mcrh.createExample",
+          "when": "explorerResourceIsFolder",
+          "group": "2_workspace@1"
+        },
+        {
+          "command": "mcrh.convertAnimation",
+          "when": "resourceExtname =~ /^(\\.gif|\\.png|\\.apng|\\.mp4|\\.mov|\\.m4v)$/",
+          "group": "2_workspace@2"
+        },
+        {
+          "command": "mcrh.previewTexture",
+          "when": "resourceExtname == .png",
+          "group": "2_workspace@3"
+        },
+        {
+          "command": "mcrh.scaffoldPack",
+          "when": "explorerResourceIsFolder",
+          "group": "2_workspace@4"
+        },
+        {
+          "command": "mcrh.writeOptiFineTutorial",
+          "when": "explorerResourceIsFolder",
+          "group": "2_workspace@5"
+        },
+        {
+          "command": "mcrh.openInBlockbench",
+          "when": "resourceExtname =~ /^\\.bbmodel$/i || (resourceExtname =~ /^\\.json$/i && resourcePath =~ /[\\\\/]models[\\\\/]/)",
+          "group": "2_workspace@6"
+        },
+        {
+          "command": "mcrh.previewVanillaModel",
+          "when": "resourceExtname == .json || resourceExtname == .png",
+          "group": "mcrh@4"
+        },
+        {
+          "command": "mcrh.exportPackZip",
+          "when": "explorerResourceIsFolder",
+          "group": "mcrh@5"
+        },
+        {
+          "command": "mcrh.previewGui",
+          "when": "resourceExtname == .png || resourceFilename == pack.mcmeta || explorerResourceIsFolder",
+          "group": "mcrh@5"
+        }
+      ],
+      "view/title": [
+        {
+          "command": "mcrh.openAdvancedWorkbench",
+          "when": "view == mcrh.sidebar",
+          "group": "navigation@1"
+        },
+        {
+          "command": "mcrh.scanPacks",
+          "when": "view == mcrh.sidebar",
+          "group": "navigation@2"
+        },
+        {
+          "command": "mcrh.scaffoldPack",
+          "when": "view == mcrh.sidebar",
+          "group": "navigation@3"
+        },
+        {
+          "command": "mcrh.extractClientAssets",
+          "when": "view == mcrh.sidebar",
+          "group": "navigation@4"
+        },
+        {
+          "command": "mcrh.createExample",
+          "when": "view == mcrh.sidebar",
+          "group": "navigation@5"
+        },
+        {
+          "command": "mcrh.showTutorial",
+          "when": "view == mcrh.sidebar",
+          "group": "navigation@6"
+        },
+        {
+          "command": "mcrh.exportPackZip",
+          "when": "view == mcrh.sidebar",
+          "group": "navigation@7"
+        },
+        {
+          "command": "mcrh.openCollaboration",
+          "when": "view == mcrh.sidebar",
+          "group": "navigation@8"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "mcrh.createExample",
+          "when": "view == mcrh.sidebar && viewItem == mcrhTemplate",
+          "group": "inline@1"
+        },
+        {
+          "command": "mcrh.createStructure",
+          "when": "view == mcrh.sidebar && viewItem == mcrhStructureMissing",
+          "group": "inline@1"
+        },
+        {
+          "command": "mcrh.scaffoldPack",
+          "when": "view == mcrh.sidebar && viewItem == mcrhPack",
+          "group": "inline@1"
+        },
+        {
+          "command": "mcrh.exportPackZip",
+          "when": "view == mcrh.sidebar && viewItem == mcrhPack",
+          "group": "mcrh@2"
+        },
+        {
+          "command": "mcrh.diagnosePack",
+          "when": "view == mcrh.sidebar && viewItem == mcrhPack",
+          "group": "mcrh@3"
+        },
+        {
+          "command": "mcrh.convertPackVersion",
+          "when": "view == mcrh.sidebar && viewItem == mcrhPack",
+          "group": "mcrh@3"
+        },
+        {
+          "command": "mcrh.previewGui",
+          "when": "viewItem == mcrhPack",
+          "group": "mcrh@5"
+        }
+      ],
+      "editor/title": [
+        {
+          "command": "mcrh.convertAnimation",
+          "when": "resourceExtname =~ /^(.gif|.apng|.mp4|.mov|.m4v)$/",
+          "group": "navigation@1"
+        },
+        {
+          "command": "mcrh.previewTexture",
+          "when": "resourceExtname == .png",
+          "group": "navigation@2"
+        },
+        {
+          "command": "mcrh.openSyntaxPreview",
+          "when": "resourceExtname == .json || resourceExtname == .mcmeta",
+          "group": "navigation@3"
+        },
+        {
+          "command": "mcrh.previewVanillaModel",
+          "when": "resourceExtname =~ /^\\.png$/i",
+          "group": "navigation@1"
+        },
+        {
+          "command": "mcrh.openInBlockbench",
+          "when": "resourceExtname =~ /^\\.bbmodel$/i || (resourceExtname =~ /^\\.json$/i && resourcePath =~ /[\\\\/]models[\\\\/]/)",
+          "group": "mcrh@5"
+        },
+        {
+          "command": "mcrh.previewGui",
+          "when": "resourcePath =~ /[\\\\/]textures[\\\\/]gui[\\\\/]/ || resourceFilename == pack.mcmeta",
+          "group": "navigation@3"
+        }
+      ]
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "mcrh",
+          "title": "MCRH",
+          "icon": "images/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "mcrh": [
+        {
+          "id": "mcrh.sidebar",
+          "name": "%view.mcrh.sidebar.name%",
+          "type": "tree"
+        },
+        {
+          "id": "mcrh.todos",
+          "name": "TODO",
+          "type": "webview"
+        }
+      ]
+    },
+    "customEditors": [
+      {
+        "viewType": "mcrh.pixelEditor",
+        "displayName": "%editor.mcrh.pixelEditor.name%",
+        "selector": [
+          {
+            "filenamePattern": "assets/*/textures/**/*.png"
+          },
+          {
+            "filenamePattern": "assets/*/optifine/**/*.png"
+          },
+          {
+            "filenamePattern": "**/assets/*/textures/**/*.png"
+          },
+          {
+            "filenamePattern": "**/assets/*/optifine/**/*.png"
+          },
+          {
+            "filenamePattern": "pack.png"
+          }
+        ],
+        "priority": "default"
+      }
+    ],
+    "configuration": {
+      "title": "MCRH",
+      "properties": {
+        "mcrh.hideTutorialOnStart": {
+          "type": "boolean",
+          "default": false,
+          "description": "%setting.hideTutorialOnStart.description%"
+        },
+        "mcrh.defaultNamespace": {
+          "type": "string",
+          "default": "minecraft",
+          "pattern": "^[a-z0-9_.-]+$",
+          "description": "%setting.defaultNamespace.description%"
+        },
+        "mcrh.animationFrametime": {
+          "type": "integer",
+          "default": 4,
+          "minimum": 1,
+          "description": "%setting.animationFrametime.description%"
+        },
+        "mcrh.ffmpegPath": {
+          "type": "string",
+          "default": "",
+          "scope": "machine",
+          "description": "%setting.ffmpegPath.description%"
+        },
+        "mcrh.blockbenchPath": {
+          "type": "string",
+          "default": "",
+          "scope": "machine",
+          "description": "%setting.blockbenchPath.description%"
+        },
+        "mcrh.scanDepth": {
+          "type": "integer",
+          "default": 2,
+          "minimum": 0,
+          "maximum": 8,
+          "description": "%setting.scanDepth.description%"
+        },
+        "mcrh.scanExtraPaths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "description": "%setting.scanExtraPaths.description%"
+        },
+        "mcrh.includeSnapshots": {
+          "type": "boolean",
+          "default": false,
+          "description": "%setting.includeSnapshots.description%"
+        },
+        "mcrh.autoRefreshPackFormats": {
+          "type": "boolean",
+          "default": true,
+          "description": "%setting.autoRefreshPackFormats.description%"
+        },
+        "mcrh.autoOpenSyntaxPreview": {
+          "type": "boolean",
+          "default": true,
+          "description": "%setting.autoOpenSyntaxPreview.description%"
+        },
+        "mcrh.paintKeybindings": {
+          "type": "object",
+          "default": {},
+          "description": "%setting.paintKeybindings.description%",
+          "scope": "application",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "mcrh.previewBaseAssetsPath": {
+          "type": "string",
+          "default": "",
+          "scope": "machine",
+          "description": "%setting.previewBaseAssetsPath.description%"
+        },
+        "mcrh.previewMinecraftVersion": {
+          "type": "string",
+          "default": "",
+          "description": "%setting.previewMinecraftVersion.description%"
+        },
+        "mcrh.previewFallbackMinecraftVersion": {
+          "type": "string",
+          "default": "26.3",
+          "description": "%setting.previewFallbackMinecraftVersion.description%"
+        },
+        "mcrh.previewAutoCacheVanilla": {
+          "type": "boolean",
+          "default": true,
+          "description": "%setting.previewAutoCacheVanilla.description%"
+        },
+        "mcrh.mcp.enabled": {
+          "type": "boolean",
+          "default": true,
+          "scope": "window",
+          "description": "%setting.mcp.enabled.description%"
+        },
+        "mcrh.collaboration.openp2pExecutable": {
+          "type": "string",
+          "default": "",
+          "scope": "machine",
+          "description": "%setting.collaboration.openp2pExecutable.description%"
+        },
+        "mcrh.collaboration.openp2pPresetUrl": {
+          "type": "string",
+          "default": "https://file.gldhn.top/file/json/preset.json",
+          "scope": "machine",
+          "description": "%setting.collaboration.openp2pPresetUrl.description%"
+        },
+        "mcrh.interfaceLanguage": {
+          "type": "string",
+          "enum": [
+            "zh_cn",
+            "en_us",
+            "auto"
+          ],
+          "default": "zh_cn",
+          "scope": "window",
+          "description": "%language.setting%"
+        }
+      }
+    },
+    "configurationDefaults": {
+      "files.associations": {
+        "*.mcmeta": "json"
+      }
+    },
+    "keybindings": [
+      {
+        "command": "undo",
+        "key": "ctrl+z",
+        "when": "editorFocus && resourceExtname == .png"
+      },
+      {
+        "command": "redo",
+        "key": "ctrl+y",
+        "when": "editorFocus && resourceExtname == .png"
+      }
+    ],
+    "languages": [
+      {
+        "id": "mcrh-optifine",
+        "extensions": [
+          ".properties"
+        ],
+        "filenames": [
+          "cit_global.properties",
+          "ctm_global.properties",
+          "block.properties",
+          "bettergrass.properties",
+          "color.properties",
+          "texture.properties",
+          "dynamiclights.properties",
+          "natural.properties",
+          "random_entities.properties",
+          "cem.properties",
+          "emissive.properties"
+        ],
+        "configuration": "./language-configuration.json",
+        "aliases": [
+          "OptiFine Properties",
+          "properties"
+        ]
+      }
+    ],
+    "grammars": [
+      {
+        "language": "mcrh-optifine",
+        "scopeName": "source.mcrh-optifine",
+        "path": "./syntaxes/optifine.tmLanguage.json"
+      }
+    ],
+    "jsonValidation": [
+      {
+        "fileMatch": [
+          "pack.mcmeta"
+        ],
+        "url": "./schemas/pack.mcmeta.schema.json"
+      }
+    ]
+  },
+  "files": [
+    "out/extension.js",
+    "out/collaboration-cli.cjs",
+    "out/mcp-cli.cjs",
+    "out/webview-repair.cjs",
+    "out/data/clientAssetsWorker.cjs",
+    "out/data/{*.json,licenses/**}",
+    "out/data/conversion/*{.json,-LICENSE}",
+    "out/data/totem/{*.json,LICENSE.md}",
+    "out/data/lib-sources/block-model-renderer/package.json",
+    "out/data/lib-sources/block-model-renderer/src/**/*.{js,json}",
+    "out/webview/*.{js,css,ttf,svg}",
+    "out/webview/logo.png",
+    "out/webview/model-assets.zip",
+    "out/webview/blockly-media/*.{gif,svg,png,cur,mp3,wav}",
+    "images/icon.png",
+    "images/icon.svg",
+    "images/pack-default.png",
+    "syntaxes/*.json",
+    "schemas/*.json",
+    "language-configuration.json",
+    "README.vsix.md",
+    "{LICENSE,CREDITS.md}",
+    "out/data/openp2p/**",
+    "locales/*.json",
+    "package.nls*.json"
+  ]
+}

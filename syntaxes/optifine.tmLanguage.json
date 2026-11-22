@@ -1,0 +1,36 @@
+{
+  "scopeName": "source.mcrh-optifine",
+  "name": "OptiFine Properties",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#assignments" }
+  ],
+  "repository": {
+    "comments": {
+      "match": "#.*$",
+      "name": "comment.line.number-sign.mcrh"
+    },
+    "assignments": {
+      "begin": "^([^=\\s][^=]*?)(=)",
+      "beginCaptures": {
+        "1": { "name": "keyword.other.mcrh" },
+        "2": { "name": "punctuation.separator.mcrh" }
+      },
+      "end": "(?=$)",
+      "patterns": [
+        {
+          "match": "\\b(true|false)\\b",
+          "name": "constant.language.boolean.mcrh"
+        },
+        {
+          "match": "(?<=^|[\\s,\\[\\]:-])-?\\d+(\\.\\d+)?",
+          "name": "constant.numeric.mcrh"
+        },
+        {
+          "match": ".+",
+          "name": "string.unquoted.mcrh"
+        }
+      ]
+    }
+  }
+}

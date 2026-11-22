@@ -1,0 +1,463 @@
+{
+  "versions": [
+    {
+      "id": "1.8.9",
+      "major": 1,
+      "minor": 0
+    },
+    {
+      "id": "1.9.4",
+      "major": 2,
+      "minor": 0
+    },
+    {
+      "id": "1.10.2",
+      "major": 2,
+      "minor": 0
+    },
+    {
+      "id": "1.11.2",
+      "major": 3,
+      "minor": 0
+    },
+    {
+      "id": "1.12.2",
+      "major": 3,
+      "minor": 0
+    },
+    {
+      "id": "1.13.2",
+      "major": 4,
+      "minor": 0
+    },
+    {
+      "id": "1.14.4",
+      "major": 4,
+      "minor": 0
+    },
+    {
+      "id": "1.15.2",
+      "major": 5,
+      "minor": 0
+    },
+    {
+      "id": "1.16.5",
+      "major": 6,
+      "minor": 0
+    },
+    {
+      "id": "1.17",
+      "major": 7,
+      "minor": 0
+    },
+    {
+      "id": "1.17.1",
+      "major": 7,
+      "minor": 0
+    },
+    {
+      "id": "1.18.2",
+      "major": 8,
+      "minor": 0
+    },
+    {
+      "id": "1.19.2",
+      "major": 9,
+      "minor": 0
+    },
+    {
+      "id": "1.19.3",
+      "major": 12,
+      "minor": 0
+    },
+    {
+      "id": "1.19.4",
+      "major": 13,
+      "minor": 0
+    },
+    {
+      "id": "1.20.1",
+      "major": 15,
+      "minor": 0
+    },
+    {
+      "id": "1.20.2",
+      "major": 18,
+      "minor": 0
+    },
+    {
+      "id": "1.20.3",
+      "major": 22,
+      "minor": 0
+    },
+    {
+      "id": "1.20.4",
+      "major": 22,
+      "minor": 0
+    },
+    {
+      "id": "1.20.5",
+      "major": 32,
+      "minor": 0
+    },
+    {
+      "id": "1.20.6",
+      "major": 32,
+      "minor": 0
+    },
+    {
+      "id": "1.21.1",
+      "major": 34,
+      "minor": 0
+    },
+    {
+      "id": "1.21.3",
+      "major": 42,
+      "minor": 0
+    },
+    {
+      "id": "1.21.4",
+      "major": 46,
+      "minor": 0
+    },
+    {
+      "id": "1.21.5",
+      "major": 55,
+      "minor": 0
+    },
+    {
+      "id": "1.21.8",
+      "major": 64,
+      "minor": 0
+    },
+    {
+      "id": "1.21.10",
+      "major": 69,
+      "minor": 0
+    },
+    {
+      "id": "1.21.11",
+      "major": 75,
+      "minor": 0
+    },
+    {
+      "id": "26.1",
+      "major": 84,
+      "minor": 0
+    },
+    {
+      "id": "26.2",
+      "major": 88,
+      "minor": 0
+    },
+    {
+      "id": "26.3",
+      "major": 97,
+      "minor": 1
+    }
+  ],
+  "boundaries": {
+    "flattening": 4,
+    "guiSprites": 18,
+    "equipment": 42,
+    "itemDefinitions": 46,
+    "rangeMetadata": 65
+  },
+  "sources": [
+    "https://www.minecraft.net/en-us/article/minecraft-java-edition-1-21-2",
+    "https://www.minecraft.net/en-us/article/minecraft-java-edition-1-21-4",
+    "https://www.minecraft.net/en-us/article/minecraft-java-edition-1-17",
+    "https://www.minecraft.net/en-us/article/minecraft-java-edition-1-20-3",
+    "https://www.minecraft.net/en-us/article/minecraft-java-edition-1-20-5"
+  ],
+  "specialItemPatterns": [
+    "^(bow|crossbow|fishing_rod|shield|trident|spyglass|compass|recovery_compass|clock|bundle|potion|splash_potion|lingering_potion|tipped_arrow|filled_map|firework_star|enchanted_book|player_head|dragon_head|piglin_head|creeper_head|zombie_head|skeleton_skull|wither_skeleton_skull)$",
+    "^leather_",
+    "_spawn_egg$",
+    "^(grass|grass_block|fern|large_fern|tall_grass|vine|lily_pad|sugar_cane|oak_leaves|spruce_leaves|birch_leaves|jungle_leaves|acacia_leaves|dark_oak_leaves|mangrove_leaves|short_grass)$",
+    "^(firework_rocket|light|debug_stick|knowledge_book|wolf_armor|suspicious_stew|filled_map)$",
+    "_(banner|bed|shulker_box)$"
+  ],
+  "unsupportedBlockPatterns": [
+    "^(grass|short_grass|tall_grass|fern|large_fern|redstone_wire|tripwire|torch|wall_torch|redstone_torch|redstone_wall_torch|dragon_egg|spawner|trial_spawner|vault)$"
+  ],
+  "limitations": [
+    "(仅转换已实现的资源类型，不能据此宣称整个材质包完全兼容目标游戏)",
+    "(shader、CTM、CIT、复杂 GUI、实体 UV、字体和 atlas 等跨版本内容需要人工核对；遇到时阻止输出)",
+    "(26.x 仅接受已验证的静态方块/物品纹理与基础模型子集，新增语法需要独立适配)"
+  ],
+  "textureRenames": [
+    {
+      "since": "1.17",
+      "kind": "block",
+      "names": {
+        "grass_path_side.png": "dirt_path_side.png",
+        "grass_path_top.png": "dirt_path_top.png"
+      }
+    },
+    {
+      "since": "1.20.3",
+      "kind": "block",
+      "names": {
+        "grass.png": "short_grass.png"
+      }
+    },
+    {
+      "since": "1.20.5",
+      "kind": "item",
+      "names": {
+        "scute.png": "turtle_scute.png"
+      }
+    }
+  ],
+  "unsupportedLegacyTexturePatterns": [
+    "^(?:redstone_dust|repeater_|comparator_on|water_|lava_|portal|fire_layer_)"
+  ],
+  "unverifiedVersions": [
+    "1.13.2"
+  ],
+  "stableBlockIds": [
+    "stone",
+    "cobblestone",
+    "dirt",
+    "bedrock",
+    "obsidian",
+    "glass",
+    "sand",
+    "gravel",
+    "netherrack",
+    "glowstone",
+    "end_stone",
+    "diamond_block",
+    "gold_block",
+    "iron_block",
+    "emerald_block",
+    "redstone_block",
+    "coal_block",
+    "lapis_block",
+    "soul_sand",
+    "slime_block"
+  ],
+  "modelRenames": [
+    {
+      "since": "1.13.2",
+      "names": {
+        "item/reeds": "item/sugar_cane"
+      }
+    },
+    {
+      "since": "1.17",
+      "names": {
+        "block/grass_path": "block/dirt_path",
+        "item/grass_path": "item/dirt_path"
+      }
+    },
+    {
+      "since": "1.20.3",
+      "names": {
+        "block/grass": "block/short_grass",
+        "item/grass": "item/short_grass"
+      }
+    },
+    {
+      "since": "1.20.5",
+      "names": {
+        "item/scute": "item/turtle_scute"
+      }
+    }
+  ],
+  "unverifiedLegacyItemModels": [
+    "item/andesite_smooth",
+    "item/anvil_intact",
+    "item/anvil_slightly_damaged",
+    "item/anvil_very_damaged",
+    "item/banner",
+    "item/bed",
+    "item/black_stained_hardened_clay",
+    "item/blue_stained_hardened_clay",
+    "item/bottle_drinkable",
+    "item/bottle_lingering",
+    "item/bottle_splash",
+    "item/brick_block",
+    "item/brown_stained_hardened_clay",
+    "item/chiseled_brick_monster_egg",
+    "item/chiseled_stonebrick",
+    "item/chorus_fruit_popped",
+    "item/clownfish",
+    "item/cobblestone_monster_egg",
+    "item/cracked_brick_monster_egg",
+    "item/cracked_stonebrick",
+    "item/cyan_stained_hardened_clay",
+    "item/diorite_smooth",
+    "item/double_fern",
+    "item/double_grass",
+    "item/double_rose",
+    "item/dye_black",
+    "item/dye_blue",
+    "item/dye_brown",
+    "item/dye_cyan",
+    "item/dye_gray",
+    "item/dye_green",
+    "item/dye_light_blue",
+    "item/dye_lime",
+    "item/dye_magenta",
+    "item/dye_orange",
+    "item/dye_pink",
+    "item/dye_purple",
+    "item/dye_red",
+    "item/dye_silver",
+    "item/dye_white",
+    "item/dye_yellow",
+    "item/end_bricks",
+    "item/firework_charge",
+    "item/fireworks",
+    "item/golden_rail",
+    "item/granite_smooth",
+    "item/gray_stained_hardened_clay",
+    "item/green_stained_hardened_clay",
+    "item/hardened_clay",
+    "item/houstonia",
+    "item/light_blue_stained_hardened_clay",
+    "item/lime_stained_hardened_clay",
+    "item/lit_pumpkin",
+    "item/magenta_stained_hardened_clay",
+    "item/magma",
+    "item/melon_block",
+    "item/mob_spawner",
+    "item/mossy_brick_monster_egg",
+    "item/mossy_stonebrick",
+    "item/netherbrick",
+    "item/noteblock",
+    "item/orange_stained_hardened_clay",
+    "item/paeonia",
+    "item/pink_stained_hardened_clay",
+    "item/purple_stained_hardened_clay",
+    "item/quartz_column",
+    "item/quartz_ore",
+    "item/record_11",
+    "item/record_13",
+    "item/record_blocks",
+    "item/record_cat",
+    "item/record_chirp",
+    "item/record_far",
+    "item/record_mall",
+    "item/record_mellohi",
+    "item/record_stal",
+    "item/record_strad",
+    "item/record_wait",
+    "item/record_ward",
+    "item/red_nether_brick",
+    "item/red_stained_hardened_clay",
+    "item/sign",
+    "item/silver_carpet",
+    "item/silver_concrete",
+    "item/silver_concrete_powder",
+    "item/silver_glazed_terracotta",
+    "item/silver_shulker_box",
+    "item/silver_stained_glass",
+    "item/silver_stained_glass_pane",
+    "item/silver_stained_hardened_clay",
+    "item/silver_wool",
+    "item/skull",
+    "item/skull_char",
+    "item/skull_creeper",
+    "item/skull_dragon",
+    "item/skull_skeleton",
+    "item/skull_wither",
+    "item/skull_zombie",
+    "item/slime",
+    "item/snow_layer",
+    "item/spawn_egg",
+    "item/speckled_melon",
+    "item/sponge_wet",
+    "item/stone_brick_monster_egg",
+    "item/stone_monster_egg",
+    "item/stonebrick",
+    "item/syringa",
+    "item/totem",
+    "item/trapdoor",
+    "item/waterlily",
+    "item/web",
+    "item/white_stained_hardened_clay",
+    "item/wooden_button",
+    "item/wooden_pressure_plate",
+    "item/yellow_stained_hardened_clay"
+  ],
+  "provenance": {
+    "verifiedAt": "2026-10-16",
+    "policy": "Model identities are independent of texture names. Unverified legacy vanilla item identities reject conversions crossing pack format 4 in either direction; no texture mapping is used to infer model identity.",
+    "legacyModels": {
+      "manifest": "https://piston-meta.mojang.com/mc/game/version_manifest_v2.json",
+      "method": "Read official client ZIP central directories and requested model entries with direct HTTP Range requests; no client code was executed or redistributed.",
+      "boundary": "The format-4 boundary is represented by the registered 1.13.2 entry; that version remains unavailable as a source or target.",
+      "clients": [
+        {
+          "version": "1.12.2",
+          "metadataUrl": "https://piston-meta.mojang.com/v1/packages/832d95b9f40699d4961394dcf6cf549e65f15dc5/1.12.2.json",
+          "clientUrl": "https://piston-data.mojang.com/v1/objects/0f275bc1547d01fa5f56ba34bdc87d981ee12daf/client.jar",
+          "clientSha1": "0f275bc1547d01fa5f56ba34bdc87d981ee12daf",
+          "itemModelCount": 717,
+          "models": [
+            {
+              "path": "assets/minecraft/models/item/reeds.json",
+              "sha256": "d4a76d196aa2bfec359bfd8b01531ad0533abe7a0d0802c2738eea22648ad3b8",
+              "parent": "item/generated",
+              "layer0": "items/reeds"
+            },
+            {
+              "path": "assets/minecraft/models/item/golden_sword.json",
+              "sha256": "34288990c792dc741cce8af45ef2bb4d1027abd85f9b74b09cf9f3bd9fbf5e3c",
+              "parent": "item/handheld",
+              "layer0": "items/gold_sword"
+            }
+          ]
+        },
+        {
+          "version": "1.17",
+          "metadataUrl": "https://piston-meta.mojang.com/v1/packages/0d9ace8a2ecfd1f4c782786f4b985a499240ff12/1.17.json",
+          "clientUrl": "https://piston-data.mojang.com/v1/objects/1cf89c77ed5e72401b869f66410934804f3d6f52/client.jar",
+          "clientSha1": "1cf89c77ed5e72401b869f66410934804f3d6f52",
+          "itemModelCount": 1234,
+          "models": [
+            {
+              "path": "assets/minecraft/models/item/sugar_cane.json",
+              "sha256": "c5940d830c638865c801ca36ed7572a9ccf3e5c0dff6d4a6ebb19d655a53db73",
+              "parent": "minecraft:item/generated",
+              "layer0": "minecraft:item/sugar_cane"
+            },
+            {
+              "path": "assets/minecraft/models/item/golden_sword.json",
+              "sha256": "fc65c5018630966e7aab4012b7c88f4ea80f61644dc02f85d32a6f11e8df8506",
+              "parent": "minecraft:item/handheld",
+              "layer0": "minecraft:item/golden_sword"
+            }
+          ]
+        }
+      ],
+      "verifiedRenames": [
+        {
+          "from": "item/reeds",
+          "to": "item/sugar_cane"
+        }
+      ],
+      "verifiedUnchanged": [
+        "item/golden_sword"
+      ],
+      "unverifiedPolicy": "Legacy item model paths absent from the modern client catalogue are rejected unless a separate model rename is already supported."
+    },
+    "scute": {
+      "url": "https://www.minecraft.net/en-us/article/minecraft-java-edition-1-20-5",
+      "section": "Resource Pack Versions 23 through 32",
+      "evidence": "Renamed scute textures and models to turtle_scute",
+      "boundary": "1.20.5",
+      "resourcePackFormat": 32,
+      "scope": [
+        "texture paths",
+        "texture animation sidecars",
+        "model paths",
+        "model references",
+        "modern item definition paths"
+      ]
+    }
+  }
+}

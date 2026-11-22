@@ -1,0 +1,493 @@
+/* 面板跟随 VS Code 主题，独立预览跟随系统配色 */
+:root,
+body.vscode-dark,
+body.vscode-high-contrast {
+  color-scheme: dark;
+  --mcrh-fallback-bg: #1e1e1e;
+  --mcrh-fallback-fg: #d4d4d4;
+  --mcrh-fallback-muted: #a6a6a6;
+  --mcrh-fallback-surface: #252526;
+  --mcrh-fallback-border: #454545;
+  --mcrh-fallback-hover: #303033;
+  --mcrh-fallback-nav-active: #37373d;
+  --mcrh-fallback-active: #04395e;
+  --mcrh-fallback-accent: #007fd4;
+  --mcrh-fallback-button: #0e639c;
+  --mcrh-fallback-button-hover: #1177bb;
+  --mcrh-fallback-secondary: #3a3d41;
+  --mcrh-fallback-secondary-hover: #45494e;
+  --mcrh-fallback-input: #313134;
+  --mcrh-fallback-link: #75beff;
+  --mcrh-fallback-danger: #f48771;
+  --mcrh-fallback-warn: #cca700;
+  --mcrh-fallback-ok: #89d185;
+  --mcrh-fallback-disabled: #919191;
+  --mcrh-fallback-scrollbar: #797979;
+}
+
+:root,
+body {
+  --mcrh-bg: var(--vscode-editor-background, var(--mcrh-fallback-bg));
+  --mcrh-fg: var(--vscode-editor-foreground, var(--mcrh-fallback-fg));
+  --mcrh-fg-muted: var(--vscode-descriptionForeground, var(--mcrh-fallback-muted));
+  --mcrh-surface: var(--vscode-sideBar-background, var(--mcrh-fallback-surface));
+  --mcrh-surface-raised: var(--vscode-editorWidget-background, var(--mcrh-fallback-surface));
+  --mcrh-border: var(--vscode-panel-border, var(--mcrh-fallback-border));
+  --mcrh-hover: var(--vscode-toolbar-hoverBackground, var(--mcrh-fallback-hover));
+  --mcrh-nav-active: var(--vscode-list-inactiveSelectionBackground, var(--mcrh-fallback-nav-active));
+  --mcrh-nav-active-fg: var(--vscode-list-inactiveSelectionForeground, var(--mcrh-fg));
+  --mcrh-active: var(--vscode-list-activeSelectionBackground, var(--mcrh-fallback-active));
+  --mcrh-active-fg: var(--vscode-list-activeSelectionForeground, #ffffff);
+  --mcrh-accent: var(--vscode-focusBorder, var(--mcrh-fallback-accent));
+  --mcrh-btn-bg: var(--vscode-button-background, var(--mcrh-fallback-button));
+  --mcrh-btn-fg: var(--vscode-button-foreground, #ffffff);
+  --mcrh-btn-hover: var(--vscode-button-hoverBackground, var(--mcrh-fallback-button-hover));
+  --mcrh-btn-secondary-bg: var(--vscode-button-secondaryBackground, var(--mcrh-fallback-secondary));
+  --mcrh-btn-secondary-fg: var(--vscode-button-secondaryForeground, var(--mcrh-fg));
+  --mcrh-btn-secondary-hover: var(--vscode-button-secondaryHoverBackground, var(--mcrh-fallback-secondary-hover));
+  --mcrh-input-bg: var(--vscode-input-background, var(--mcrh-fallback-input));
+  --mcrh-input-fg: var(--vscode-input-foreground, var(--mcrh-fg));
+  --mcrh-input-border: var(--vscode-input-border, var(--mcrh-border));
+  --mcrh-link: var(--vscode-textLink-foreground, var(--mcrh-fallback-link));
+  --mcrh-danger: var(--vscode-errorForeground, var(--mcrh-fallback-danger));
+  --mcrh-warn: var(--vscode-editorWarning-foreground, var(--mcrh-fallback-warn));
+  --mcrh-ok: var(--vscode-charts-green, var(--mcrh-fallback-ok));
+  --mcrh-disabled: var(--vscode-disabledForeground, var(--mcrh-fallback-disabled));
+  --mcrh-scrollbar: var(--vscode-scrollbarSlider-background, var(--mcrh-fallback-scrollbar));
+  --mcrh-font: var(--vscode-font-family, "Segoe UI", system-ui, sans-serif);
+  --mcrh-mono: var(--vscode-editor-font-family, Consolas, "Courier New", monospace);
+  --mcrh-radius: 3px;
+  --mcrh-radius-lg: 4px;
+  --mcrh-control-h: 24px;
+  --mcrh-icon-size: 26px;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color-scheme: light;
+    --mcrh-fallback-bg: #ffffff;
+    --mcrh-fallback-fg: #333333;
+    --mcrh-fallback-muted: #616161;
+    --mcrh-fallback-surface: #f3f3f3;
+    --mcrh-fallback-border: #cecece;
+    --mcrh-fallback-hover: #e8e8e8;
+    --mcrh-fallback-nav-active: #e4e4e4;
+    --mcrh-fallback-active: #0060c0;
+    --mcrh-fallback-accent: #005fb8;
+    --mcrh-fallback-button: #005fb8;
+    --mcrh-fallback-button-hover: #0258a8;
+    --mcrh-fallback-secondary: #e5e5e5;
+    --mcrh-fallback-secondary-hover: #d8d8d8;
+    --mcrh-fallback-input: #ffffff;
+    --mcrh-fallback-link: #006ab1;
+    --mcrh-fallback-danger: #a1260d;
+    --mcrh-fallback-warn: #795e00;
+    --mcrh-fallback-ok: #267f32;
+    --mcrh-fallback-disabled: #777777;
+    --mcrh-fallback-scrollbar: #8b8b8b;
+  }
+}
+
+body.vscode-light,
+body.vscode-high-contrast-light {
+  color-scheme: light;
+  --mcrh-fallback-bg: #ffffff;
+  --mcrh-fallback-fg: #333333;
+  --mcrh-fallback-muted: #616161;
+  --mcrh-fallback-surface: #f3f3f3;
+  --mcrh-fallback-border: #cecece;
+  --mcrh-fallback-hover: #e8e8e8;
+  --mcrh-fallback-nav-active: #e4e4e4;
+  --mcrh-fallback-active: #0060c0;
+  --mcrh-fallback-accent: #005fb8;
+  --mcrh-fallback-button: #005fb8;
+  --mcrh-fallback-button-hover: #0258a8;
+  --mcrh-fallback-secondary: #e5e5e5;
+  --mcrh-fallback-secondary-hover: #d8d8d8;
+  --mcrh-fallback-input: #ffffff;
+  --mcrh-fallback-link: #006ab1;
+  --mcrh-fallback-danger: #a1260d;
+  --mcrh-fallback-warn: #795e00;
+  --mcrh-fallback-ok: #267f32;
+  --mcrh-fallback-disabled: #777777;
+  --mcrh-fallback-scrollbar: #8b8b8b;
+}
+
+body.vscode-dark,
+body.vscode-high-contrast { color-scheme: dark; }
+body.vscode-light,
+body.vscode-high-contrast-light { color-scheme: light; }
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: var(--mcrh-bg);
+  color: var(--mcrh-fg);
+  font: 13px/1.5 var(--mcrh-font);
+}
+
+button,
+input,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 1px solid var(--mcrh-accent);
+  outline-offset: 1px;
+}
+
+.mcrh-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: var(--mcrh-control-h);
+  padding: 0 10px;
+  border: 1px solid var(--mcrh-border);
+  border-radius: var(--mcrh-radius);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.mcrh-btn:hover:not(:disabled) {
+  background: var(--mcrh-hover);
+}
+
+.mcrh-btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.mcrh-btn--primary {
+  border-color: transparent;
+  background: var(--mcrh-btn-bg);
+  color: var(--mcrh-btn-fg);
+}
+
+.mcrh-btn--primary:hover:not(:disabled) {
+  background: var(--mcrh-btn-hover);
+}
+
+.mcrh-btn--secondary {
+  border-color: transparent;
+  background: var(--mcrh-btn-secondary-bg);
+  color: var(--mcrh-btn-secondary-fg);
+}
+
+.mcrh-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--mcrh-icon-size);
+  height: var(--mcrh-icon-size);
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: var(--mcrh-radius);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.mcrh-icon-btn:hover:not(:disabled) {
+  background: var(--mcrh-hover);
+}
+
+.mcrh-icon-btn[aria-pressed="true"],
+.mcrh-icon-btn.is-active {
+  background: var(--mcrh-active);
+  color: var(--mcrh-active-fg);
+}
+
+.mcrh-icon-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.mcrh-kbd {
+  display: inline-block;
+  min-width: 16px;
+  padding: 0 4px;
+  border: 1px solid var(--mcrh-border);
+  border-radius: 3px;
+  font: 11px/16px var(--mcrh-mono);
+  text-align: center;
+  color: var(--mcrh-fg-muted);
+}
+
+.mcrh-tag {
+  display: inline-flex;
+  align-items: center;
+  height: 18px;
+  padding: 0 8px;
+  border: 1px solid var(--mcrh-border);
+  border-radius: 3px;
+  font-size: 11px;
+  color: var(--mcrh-fg-muted);
+}
+
+.mcrh-sep {
+  align-self: stretch;
+  width: 1px;
+  margin: 4px 2px;
+  background: var(--mcrh-border);
+}
+
+.mcrh-input {
+  height: var(--mcrh-control-h);
+  padding: 0 6px;
+  border: 1px solid var(--mcrh-input-border);
+  border-radius: var(--mcrh-radius);
+  background: var(--mcrh-input-bg);
+  color: var(--mcrh-input-fg);
+}
+
+.mcrh-section-title {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: var(--mcrh-fg-muted);
+}
+
+input[type="range"].mcrh-range {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 16px;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+input[type="range"].mcrh-range::-webkit-slider-runnable-track {
+  height: 3px;
+  border-radius: 2px;
+  background: var(--mcrh-input-border);
+}
+
+input[type="range"].mcrh-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  margin-top: -4.5px;
+  border: none;
+  border-radius: 50%;
+  background: var(--mcrh-accent);
+}
+
+input[type="range"].mcrh-range::-moz-range-track {
+  height: 3px;
+  border-radius: 2px;
+  background: var(--mcrh-input-border);
+}
+
+input[type="range"].mcrh-range::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border: none;
+  border-radius: 50%;
+  background: var(--mcrh-accent);
+}
+
+.mcrh-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.mcrh-btn--secondary:hover:not(:disabled) { background: var(--mcrh-btn-secondary-hover); }
+
+body.vscode-high-contrast,
+body.vscode-high-contrast-light {
+  --mcrh-border: var(--vscode-contrastBorder, var(--mcrh-fg));
+  --mcrh-input-border: var(--vscode-contrastBorder, var(--mcrh-fg));
+}
+
+@media (forced-colors: active) {
+  :root,
+  body {
+    --mcrh-border: CanvasText;
+    --mcrh-input-border: CanvasText;
+    --mcrh-accent: Highlight;
+    --mcrh-nav-active: Highlight;
+    --mcrh-nav-active-fg: HighlightText;
+  }
+  button:disabled { color: GrayText; opacity: 1; }
+}
+
+.mcrh-svg-icon { display: block; width: 16px; height: 16px; flex: 0 0 auto; fill: currentColor; }
+
+/* 下拉菜单沿用原生选择语义与宿主主题 */
+select:where(:not([multiple])):where(:not([size]), [size="1"]) {
+  cursor: pointer;
+  border-radius: 4px;
+  text-overflow: ellipsis;
+}
+
+select:where(:not([multiple])):where(:not([size]), [size="1"]):hover:not(:disabled) {
+  border-color: var(--mcrh-select-hover-border, var(--mcrh-accent));
+}
+
+select:where(:not([multiple])):where(:not([size]), [size="1"]):disabled {
+  cursor: not-allowed;
+  color: var(--mcrh-disabled);
+}
+
+@supports (appearance: base-select) {
+  select:where(:not([multiple])):where(:not([size]), [size="1"]),
+  select:where(:not([multiple])):where(:not([size]), [size="1"])::picker(select) {
+    appearance: base-select;
+  }
+
+  select:where(:not([multiple])):where(:not([size]), [size="1"]) {
+    align-items: center;
+    gap: 10px;
+    min-inline-size: 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  /* 内部承载按钮不沿用页面操作按钮的布局 */
+  select > button.mcrh-select-content {
+    all: unset !important;
+    display: block !important;
+    flex: 1 !important;
+    min-inline-size: 0 !important;
+    overflow: hidden !important;
+  }
+
+  select > button.mcrh-select-content selectedcontent {
+    display: block;
+    min-inline-size: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  select:where(:not([multiple])):where(:not([size]), [size="1"])::picker-icon {
+    content: "";
+    box-sizing: border-box;
+    inline-size: 6px;
+    block-size: 6px;
+    flex: 0 0 6px;
+    margin-inline-start: auto;
+    margin-inline-end: 2px;
+    border: solid currentColor;
+    border-width: 0 1.5px 1.5px 0;
+    color: var(--mcrh-fg-muted);
+    transform: translateY(-2px) rotate(45deg);
+  }
+
+  select:where(:not([multiple])):where(:not([size]), [size="1"]):open {
+    border-color: var(--mcrh-accent);
+  }
+
+  select:where(:not([multiple])):where(:not([size]), [size="1"]):open::picker-icon {
+    color: var(--mcrh-accent);
+    transform: translateY(2px) rotate(225deg);
+  }
+
+  select:where(:not([multiple])):where(:not([size]), [size="1"])::picker(select) {
+    box-sizing: border-box;
+    padding: 4px;
+    margin-block: 5px;
+    border: 1px solid var(--mcrh-border);
+    border-radius: 6px;
+    background: var(--mcrh-surface-raised);
+    color: var(--mcrh-fg);
+    box-shadow: 0 5px 18px rgb(0 0 0 / 18%);
+    font: 12px/1.5 var(--mcrh-font);
+    min-inline-size: anchor-size(self-inline);
+    max-inline-size: min(560px, calc(100dvw - 24px));
+    max-block-size: min(360px, 55dvh);
+    overflow: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: var(--mcrh-scrollbar) transparent;
+  }
+
+  select:where(:not([multiple])):where(:not([size]), [size="1"]) option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-block-size: 30px;
+    padding: 5px 9px;
+    border: 0;
+    border-radius: 3px;
+    color: var(--mcrh-fg);
+    background: transparent;
+    font: inherit;
+    line-height: 1.5;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    cursor: pointer;
+  }
+
+  select:where(:not([multiple])):where(:not([size]), [size="1"]) option::checkmark {
+    order: 1;
+    margin-inline-start: auto;
+    flex: 0 0 auto;
+    font-size: 12px;
+  }
+
+  select:where(:not([multiple])):where(:not([size]), [size="1"]) option:checked {
+    background: var(--mcrh-active);
+    color: var(--mcrh-active-fg);
+  }
+
+  select:where(:not([multiple])):where(:not([size]), [size="1"]) option:hover:not(:disabled):not(:checked),
+  select:where(:not([multiple])):where(:not([size]), [size="1"]) option:focus-visible:not(:checked) {
+    background: var(--mcrh-hover);
+    color: var(--mcrh-fg);
+  }
+
+  select:where(:not([multiple])):where(:not([size]), [size="1"]) option:focus-visible {
+    outline: 1px solid var(--mcrh-accent);
+    outline-offset: -1px;
+  }
+
+  select:where(:not([multiple])):where(:not([size]), [size="1"]) option:disabled {
+    color: var(--mcrh-disabled);
+    cursor: not-allowed;
+  }
+
+  select:where(:not([multiple])):where(:not([size]), [size="1"]) optgroup {
+    color: var(--mcrh-fg-muted);
+    font-size: 11px;
+    font-weight: 600;
+    padding-block: 4px;
+  }
+
+  select:where(:not([multiple])):where(:not([size]), [size="1"]) optgroup + optgroup {
+    border-top: 1px solid var(--mcrh-border);
+    margin-top: 4px;
+  }
+}
+
+@media (forced-colors: active) {
+  select:where(:not([multiple])):where(:not([size]), [size="1"])::picker(select) {
+    border-color: CanvasText;
+    background: Canvas;
+    color: CanvasText;
+    box-shadow: none;
+  }
+
+  select:where(:not([multiple])):where(:not([size]), [size="1"]) option:checked {
+    background: Highlight;
+    color: HighlightText;
+    forced-color-adjust: none;
+  }
+}

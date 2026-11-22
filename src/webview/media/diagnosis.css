@@ -1,0 +1,39 @@
+.diagnosis-page { max-width: 1120px; margin: 0 auto; padding: 32px 28px 64px; color: var(--mcrh-fg); font-family: var(--mcrh-font); }
+.diagnosis-page-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; padding-bottom: 24px; border-bottom: 1px solid var(--mcrh-border); }
+.diagnosis-page h1 { font-size: 23px; font-weight: 600; margin: 0 0 10px; }
+.diagnosis-page-note, .diagnosis-page-source, .diagnosis-status { color: var(--mcrh-fg-muted); font-size: 12px; line-height: 1.7; margin: 4px 0; overflow-wrap: anywhere; }
+.diagnosis-page button, .diagnosis-results button, .diagnosis-results input, .diagnosis-results select { font: inherit; border: 1px solid var(--mcrh-input-border); border-radius: 6px; padding: 7px 11px; background: var(--mcrh-input-bg); color: var(--mcrh-input-fg); box-sizing: border-box; }
+.diagnosis-page button, .diagnosis-results button { cursor: pointer; }
+.diagnosis-page button:disabled { cursor: default; opacity: .6; }
+.diagnosis-page button:focus-visible, .diagnosis-results :is(button,input,select):focus-visible { outline: 2px solid var(--mcrh-accent); outline-offset: 2px; }
+.diagnosis-page .diagnosis-rerun { flex: none; background: var(--mcrh-btn-bg); color: var(--mcrh-btn-fg); border-color: transparent; font-size: 12px; }
+.diagnosis-status { padding: 12px 0; }
+.diagnosis-status[role=alert] { color: var(--mcrh-danger); }
+.diagnosis-results { min-width: 0; color: var(--mcrh-fg); font-size: 13px; }
+.diagnosis-result-heading { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+.diagnosis-result-heading h2 { font-size: 15px; font-weight: 600; margin: 0; }
+.diagnosis-badges { display: flex; flex-wrap: wrap; gap: 8px; }
+.diagnosis-badge { font-size: 11px; border: 1px solid currentColor; border-radius: 20px; padding: 3px 9px; }
+.diagnosis-error { color: var(--mcrh-danger); }
+.diagnosis-warning { color: var(--mcrh-warn); }
+.diagnosis-summary, .diagnosis-visible-count { color: var(--mcrh-fg-muted); font-size: 12px; margin: 10px 0 16px; overflow-wrap: anywhere; }
+.diagnosis-tools { display: flex; gap: 10px; margin: 20px 0 12px; }
+.diagnosis-tools input { flex: 1; min-width: 0; }
+.diagnosis-tools select { max-width: 180px; }
+.diagnosis-file { border: 1px solid var(--mcrh-border); border-radius: 8px; margin-bottom: 16px; overflow: hidden; }
+.diagnosis-file-heading { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; padding: 13px 16px; margin: 0; background: var(--mcrh-surface); font-size: 12px; color: var(--mcrh-fg); }
+.diagnosis-file-heading code { font-family: var(--mcrh-mono); font-weight: 400; overflow-wrap: anywhere; min-width: 0; }
+.diagnosis-file-count { flex: none; color: var(--mcrh-fg-muted); font-weight: 400; font-size: 11px; }
+.diagnosis-issue { padding: 16px; border-top: 1px solid var(--mcrh-border); overflow-wrap: anywhere; }
+.diagnosis-issue-heading { display: flex; align-items: baseline; gap: 10px; }
+.diagnosis-issue-heading strong { color: var(--mcrh-fg); font-size: 13px; line-height: 1.6; font-weight: 500; }
+.diagnosis-severity { flex: none; font-size: 11px; }
+.diagnosis-location { font: 11px var(--mcrh-mono); color: var(--mcrh-fg-muted); margin: 10px 0 6px; }
+.diagnosis-excerpt { padding: 10px 12px; margin: 8px 0; border-radius: 5px; background: var(--mcrh-input-bg); color: var(--mcrh-fg); font: 12px/1.6 var(--mcrh-mono); white-space: pre-wrap; overflow-wrap: anywhere; }
+.diagnosis-advice { margin: 8px 0 0; color: var(--mcrh-fg-muted); font-size: 12px; line-height: 1.7; }
+.diagnosis-results .diagnosis-open { margin-top: 12px; background: transparent; font-size: 11px; color: var(--mcrh-link); }
+.diagnosis-more { display: block; margin: 16px auto; }
+.diagnosis-empty { padding: 36px 20px; text-align: center; border: 1px solid var(--mcrh-border); border-radius: 8px; color: var(--mcrh-fg-muted); }
+.diagnosis-budget { color: var(--mcrh-warn); font-size: 12px; line-height: 1.7; }
+.diagnosis-results [hidden] { display: none; }
+@media (max-width: 600px) { .diagnosis-page { padding: 20px 14px 40px; } .diagnosis-page-header { flex-direction: column; gap: 12px; } .diagnosis-issue { padding: 12px; } .diagnosis-file-heading { padding: 12px; } }
